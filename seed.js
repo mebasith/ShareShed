@@ -11,7 +11,6 @@ const seed = async () => {
         name: 'Pawel'
       })
     ]);
-    // seed your database here!
 
     const tools = await Promise.all([
       Tool.create({
