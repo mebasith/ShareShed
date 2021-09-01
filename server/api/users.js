@@ -5,7 +5,7 @@ const router = require('express').Router();
 // GET /api/users
 router.get('/', async (req, res, next) => {
   try {
-    const users = await Robot.findAll();
+    const users = await Tool.findAll();
     res.json(users);
   } catch (error) {
     next(error);
@@ -16,7 +16,7 @@ router.get('/', async (req, res, next) => {
 router.get('/:userId', async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.userId, {
-      include: [{ model: Project }],
+      include: [{ model: Tool }],
     });
     res.json(user);
   } catch (error) {
@@ -58,8 +58,8 @@ router.put('/:id', async (req, res, next) => {
 router.put('/:id/:tool', async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id);
-    const tool = await Tool.findByPk(req.params.project);
-    await user.removeProject(tool);
+    const tool = await Tool.findByPk(req.params.tool);
+    await user.removeTool(tool);
     res.send(await User.update(req.body));
   } catch (error) {
     next(error);

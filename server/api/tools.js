@@ -5,7 +5,7 @@ const router = require('express').Router();
 // GET /api/tools
 router.get('/', async (req, res, next) => {
   try {
-    const tools = await Project.findAll({
+    const tools = await Tool.findAll({
       attributes: [
         'id',
         'name',
@@ -19,10 +19,10 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-//GET /api/projects/:toolId
+//GET /api/tools/:toolId
 router.get('/:toolId', async (req, res, next) => {
   try {
-    const tool = await Project.findByPk(req.params.toolId);
+    const tool = await Tool.findByPk(req.params.toolId);
     res.json(tool);
   } catch (error) {
     next(error);
@@ -41,9 +41,9 @@ router.post('/', async (req, res, next) => {
 // DELETE /api/tools/:id
 router.delete('/:id', async (req, res, next) => {
   try {
-    const project = await Tool.findByPk(req.params.id);
-    await project.destroy();
-    res.send(project);
+    const tool = await Tool.findByPk(req.params.id);
+    await tool.destroy();
+    res.send(tool);
   } catch (error) {
     next(error);
   }
@@ -52,7 +52,7 @@ router.delete('/:id', async (req, res, next) => {
 // PUT /api/tools/:id
 router.put('/:id', async (req, res, next) => {
   try {
-    const project = await Tool.findByPk(req.params.id);
+    const tool = await Tool.findByPk(req.params.id);
     res.send(await tool.update(req.body));
   } catch (error) {
     next(error);
