@@ -22,4 +22,7 @@ module.exports = db.define('tool', {
     defaultValue:
       'https://cdn.pixabay.com/photo/2016/02/19/11/32/tools-1209764_960_720.jpg',
   },
+  possessorId: {
+    type: Sequelize.INTEGER
+  }
 });
